@@ -1,36 +1,26 @@
-const net = require('net');
-
-const connect = function(){
-  const conn = net.createConnection({
-    host : '172.22.242.221',
-    port : 50541
-  });
-
-  conn.setEncoding('utf8');
-  
-  conn.on('lookup', (data) => {
-    console.log(`lookup : ${data}`);
-  });
-
-  conn.on('connect', (data) => {
-    console.log(`Connected : ${data}`);
-  });
-
-  conn.on('ready', (data) => {
-    console.log(`Ready : ${data}`);
-  });
-
-  conn.on('data', (data) => {
-    console.log(`Handled : ${data}`);
-  });
-
-  conn.on('close', (data)=>{
-    console.log(`Disconnected : ${data}`);
-  });
-
-  return conn;
-};
+const { connect } = require('./client');
 
 console.log('connecting...');
 
-connect();
+// connect();
+
+// Call the connect function
+const connection = connect();
+
+// Now you can use the 'connection' object to interact with the server
+// For example, you can send data to the server using connection.write()
+// or listen for server events using connection.on()
+
+// Example: Sending data to the server
+connection.write('Hello, server!');
+
+// Example: Listening for server events
+connection.on('data', (data) => {
+  console.log(`Received data from server: ${data}`);
+});
+
+// Remember to handle any errors or close the connection when you're done
+// For example, you can listen for the 'close' event to handle disconnection
+connection.on('close', () => {
+  console.log('Disconnected from the server');
+});
