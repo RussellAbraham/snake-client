@@ -17,7 +17,10 @@ const connect = function(){
   
   on(conn, {
     'lookup' (data) { console.log(`lookup : ${data}`); },
-    'connect' (data) { console.log(`Connected : ${data}`); },
+    'connect' (data) { 
+      console.log(`Successfully connected to game server`);
+       conn.write('Name: SNK');
+    },
     'ready' (data) { console.log(`Ready : ${data}`); },
     'data' (data) { console.log(`Handled : ${data}`); },
     'close' (data) { console.log(`Disconnected : ${data}`); }
