@@ -1,4 +1,5 @@
 const net = require('net');
+const { IP, PORT } = require("./constants");
 
 const on = function(object, callbacks){
   for(let callback in callbacks){
@@ -9,8 +10,8 @@ const on = function(object, callbacks){
 const connect = function(){
 
   const conn = net.createConnection({
-    host : '172.22.248.118',
-    port : 50541
+    host : IP,
+    port : PORT
   });
 
   conn.setEncoding('utf8');
