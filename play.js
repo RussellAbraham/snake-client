@@ -2,25 +2,25 @@ const { connect } = require('./client');
 
 console.log('connecting...');
 
-// connect();
+// setup interface to handle user input from stdin
+const setupInput = function () {
+  const stdin = process.stdin;
+  stdin.setRawMode(true);
+  stdin.setEncoding("utf8");
+  stdin.resume();
 
-// Call the connect function
-const connection = connect();
+  stdin.on("data", handleUserInput);
 
-// Now you can use the 'connection' object to interact with the server
-// For example, you can send data to the server using connection.write()
-// or listen for server events using connection.on()
+  return stdin;
+};
 
-// Example: Sending data to the server
-connection.write('Hello, server!');
+const handleUserInput = function (event) {
+  if(event === '\u0003'){
+    process.exit();
+  } 
+  if(event === 'w'){
+    console.log('w was pressed')
+  }
+};
 
-// Example: Listening for server events
-connection.on('data', (data) => {
-  console.log(`Received data from server: ${data}`);
-});
-
-// Remember to handle any errors or close the connection when you're done
-// For example, you can listen for the 'close' event to handle disconnection
-connection.on('close', () => {
-  console.log('Disconnected from the server');
-});
+setupInput(connect());

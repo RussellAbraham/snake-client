@@ -16,37 +16,18 @@ const connect = function(){
   conn.setEncoding('utf8');
   
   on(conn, {
-    'lookup' (data) { console.log(`lookup : ${data}`); },
-    'connect' (data) { 
-      console.log(`Successfully connected to game server`);
-       
-      conn.write('Name: SNK');
-      //
-      // setInterval(()=>{ conn.write("Move: up"); }, 1000);
-    },
-    'ready' (data) { console.log(`Ready : ${data}`); },
-    'data' (data) { 
-      
+
+    'data' (data) {       
       console.log(`Handled : ${data}`); 
     },
-    'close' (data) { console.log(`Disconnected : ${data}`); }
-  });
 
-  //conn.on('lookup', (data) => {
-  //  console.log(`lookup : ${data}`);
-  //});
-  //conn.on('connect', (data) => {
-  //  console.log(`Connected : ${data}`);
-  //});
-  //conn.on('ready', (data) => {
-  //  console.log(`Ready : ${data}`);
-  //});
-  //conn.on('data', (data) => {
-  //  console.log(`Handled : ${data}`);
-  //});
-  //conn.on('close', (data)=>{
-  //  console.log(`Disconnected : ${data}`);
-  //});
+    'connect' () { 
+      console.log(`Successfully connected to game server`);   
+      conn.write('Name: SNK');
+      // setInterval(()=>{ conn.write("Move: up"); }, 1000);
+    }
+
+  });
 
   return conn;
 };
