@@ -9,7 +9,7 @@ const on = function(object, callbacks){
 const connect = function(){
 
   const conn = net.createConnection({
-    host : '172.22.242.221',
+    host : '172.22.248.118',
     port : 50541
   });
 
@@ -19,10 +19,16 @@ const connect = function(){
     'lookup' (data) { console.log(`lookup : ${data}`); },
     'connect' (data) { 
       console.log(`Successfully connected to game server`);
-       conn.write('Name: SNK');
+       
+      conn.write('Name: SNK');
+      //
+      // setInterval(()=>{ conn.write("Move: up"); }, 1000);
     },
     'ready' (data) { console.log(`Ready : ${data}`); },
-    'data' (data) { console.log(`Handled : ${data}`); },
+    'data' (data) { 
+      
+      console.log(`Handled : ${data}`); 
+    },
     'close' (data) { console.log(`Disconnected : ${data}`); }
   });
 
