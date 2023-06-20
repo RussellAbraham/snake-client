@@ -1,0 +1,20 @@
+{
+  "name": "snake-client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "play.js",
+  "scripts": {
+    "start": "node play.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RussellAbraham/snake-client.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RussellAbraham/snake-client/issues"
+  },
+  "homepage": "https://github.com/RussellAbraham/snake-client#readme"
+}

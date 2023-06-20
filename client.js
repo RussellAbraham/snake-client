@@ -1,5 +1,5 @@
 const net = require('net');
-const { IP, PORT } = require("./constants");
+const { IP, PORT, PLAYER_NAME } = require("./constants");
 
 const on = function(object, callbacks){
   for(let callback in callbacks){
@@ -24,8 +24,11 @@ const connect = function(){
 
     'connect' () { 
       console.log(`Successfully connected to game server`);   
-      conn.write('Name: SNK');
-      // setInterval(()=>{ conn.write("Move: up"); }, 1000);
+      conn.write(PLAYER_NAME);
+    },
+
+    'end' () {
+      console.log('Disconnected from the game server.');
     }
 
   });
