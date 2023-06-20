@@ -5,6 +5,7 @@ class Client {
   constructor() {
     this.client = net.createConnection({ port: PORT, host: IP });
     this.client.setEncoding('utf8');
+    this.initialize.apply(this, arguments);
   }
 
   connect() {
@@ -20,6 +21,10 @@ class Client {
     this.client.on('end', () => {
       console.log('Disconnected from the game server');
     });
+  }
+  initialize() {
+    // fires on initialization
+    this.connect();
   }
 }
 

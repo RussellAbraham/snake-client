@@ -8,6 +8,7 @@ class Input {
       input: process.stdin,
       output: process.stdout,
     });
+    this.initialize.apply(this, arguments);
   }
 
   setupInput() {
@@ -54,6 +55,11 @@ class Input {
     if (currentDirection !== oppositeMove) {
       this.client.write(`Move: ${move}`);
     }
+  }
+
+  initialize() {
+    // pass proper argument to setup input on initialization
+    this.setupInput();
   }
 }
 
